@@ -37,14 +37,15 @@ int menu()
 	int thrleft = WIDTH / 3;
 	int thrright = WIDTH * 2 / 3;
 	setfillcolor(CYAN);//设置菜单栏背景色
-	settextstyle(30, 0, "楷体");//设置文字格式
-	setbkmode(TRANSPARENT);//去掉文字背景
 	BeginBatchDraw();
 	cleardevice();
+	setlinecolor(WHITE);
 	fillrectangle(bigleft, bigtop, bigright, bigbottom);
 	fillrectangle(oneleft, onetop, oneright, onebottom);
 	fillrectangle(twoleft, twotop, tworight, twobottom);
 	fillrectangle(thrleft, thrtop, thrright, thrbottom);
+	settextstyle(30, 0, "楷体");//设置文字格式
+	setbkmode(TRANSPARENT);//去掉文字背景
 	outtextxy(WIDTH / 2 - 45, HIGHT / 6, "贪吃蛇");
 	settextstyle(18, 0, "楷体");//设置文字格式
 	outtextxy(WIDTH / 2 - 30, HIGHT * 10 / 21, "开始游戏");
@@ -54,6 +55,20 @@ int menu()
 	MOUSEMSG m;
 	while (1)
 	{
+		BeginBatchDraw();
+		cleardevice();
+		setlinecolor(WHITE);
+		fillrectangle(bigleft, bigtop, bigright, bigbottom);
+		fillrectangle(oneleft, onetop, oneright, onebottom);
+		fillrectangle(twoleft, twotop, tworight, twobottom);
+		fillrectangle(thrleft, thrtop, thrright, thrbottom);
+		settextstyle(30, 0, "楷体");//设置文字格式
+		setbkmode(TRANSPARENT);//去掉文字背景
+		outtextxy(WIDTH / 2 - 45, HIGHT / 6, "贪吃蛇");
+		settextstyle(18, 0, "楷体");//设置文字格式
+		outtextxy(WIDTH / 2 - 30, HIGHT * 10 / 21, "开始游戏");
+		outtextxy(WIDTH / 2 - 30, HIGHT * 14 / 21, "查看帮助");
+		outtextxy(WIDTH / 2 - 30, HIGHT * 18 / 21, "退出游戏");
 		m = GetMouseMsg();
 		if (m.x > oneleft && m.x<oneright && m.y>onetop && m.y < onebottom)
 		{
@@ -82,6 +97,7 @@ int menu()
 				return 0;
 			}
 		}
+		EndBatchDraw();
 	}
 }
 int help()
@@ -124,6 +140,19 @@ int help()
 	MOUSEMSG m;
 	while (1)
 	{
+		BeginBatchDraw();
+		cleardevice();
+		setfillcolor(CYAN);
+		setlinecolor(WHITE);
+		fillrectangle(bigleft, bigtop, bigright, bigbottom);
+		fillrectangle(oneleft, onetop, oneright, onebottom);
+		fillrectangle(thrleft, thrtop, thrright, thrbottom);
+		setfillcolor(LIGHTBLUE);
+		fillrectangle(twoleft, twotop, tworight, twobottom);
+		outtextxy(bigleft + 5, HIGHT / 6, "方向控制：使用W,A,S,D 或者方向键");
+		outtextxy(WIDTH / 2 - 30, HIGHT * 10 / 21, "开始游戏");
+		outtextxy(WIDTH / 2 - 30, HIGHT * 14 / 21, "查看帮助");
+		outtextxy(WIDTH / 2 - 30, HIGHT * 18 / 21, "退出游戏");
 		m = GetMouseMsg();
 		if (m.x > oneleft && m.x<oneright && m.y>onetop && m.y < onebottom)
 		{
@@ -143,6 +172,7 @@ int help()
 				return 0;
 			}
 		}
+		EndBatchDraw();
 	}
 }
 int result()
@@ -168,19 +198,20 @@ int result()
 	int thrleft = WIDTH / 3;
 	int thrright = WIDTH * 2 / 3;
 	setfillcolor(CYAN);//设置菜单栏背景色
-	settextstyle(30, 0, "楷体");//设置文字格式
 	setbkmode(TRANSPARENT);//去掉文字背景
+	char score[4] = { 0 };
+#pragma warning(suppress : 4996)//用于忽视visual studio编译器对sprintf（）函数的报警，其他编译器可删除
+	sprintf(score, "%d", snake.longth - 3);
 	BeginBatchDraw();
 	cleardevice();
+	setlinecolor(WHITE);
 	fillrectangle(bigleft, bigtop, bigright, bigbottom);
 	fillrectangle(oneleft, onetop, oneright, onebottom);
 	fillrectangle(twoleft, twotop, tworight, twobottom);
 	fillrectangle(thrleft, thrtop, thrright, thrbottom);
+	settextstyle(30, 0, "楷体");//设置文字格式
 	outtextxy(WIDTH / 2 - 145, HIGHT / 6, "本次得分：");
 	settextstyle(40, 0, "楷体");
-	char score[4] = { 0 };
-#pragma warning(suppress : 4996)//用于忽视visual studio编译器对sprintf（）函数的报警，其他编译器可删除
-	sprintf(score, "%d", snake.longth - 3);
 	outtextxy(WIDTH / 2, HIGHT / 6, score);
 	settextstyle(18, 0, "楷体");//设置文字格式
 	outtextxy(WIDTH / 2 - 30, HIGHT * 10 / 21, "重新开始");
@@ -190,6 +221,21 @@ int result()
 	MOUSEMSG m;
 	while (1)
 	{
+		BeginBatchDraw();
+		cleardevice();
+		setlinecolor(WHITE);
+		fillrectangle(bigleft, bigtop, bigright, bigbottom);
+		fillrectangle(oneleft, onetop, oneright, onebottom);
+		fillrectangle(twoleft, twotop, tworight, twobottom);
+		fillrectangle(thrleft, thrtop, thrright, thrbottom);
+		settextstyle(30, 0, "楷体");//设置文字格式
+		outtextxy(WIDTH / 2 - 145, HIGHT / 6, "本次得分：");
+		settextstyle(40, 0, "楷体");
+		outtextxy(WIDTH / 2, HIGHT / 6, score);
+		settextstyle(18, 0, "楷体");//设置文字格式
+		outtextxy(WIDTH / 2 - 30, HIGHT * 10 / 21, "重新开始");
+		outtextxy(WIDTH / 2 - 30, HIGHT * 14 / 21, "查看帮助");
+		outtextxy(WIDTH / 2 - 30, HIGHT * 18 / 21, "退出游戏");
 		m = GetMouseMsg();
 		if (m.x > oneleft && m.x<oneright && m.y>onetop && m.y < onebottom)
 		{
@@ -222,5 +268,6 @@ int result()
 				return 0;
 			}
 		}
+		EndBatchDraw();
 	}
 }
